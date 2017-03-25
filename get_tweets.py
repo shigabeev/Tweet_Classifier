@@ -31,7 +31,7 @@ def get_tweets(username):
     tweets_for_csv = [[username, tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in tweets]
 
     # write to a new csv file from the array of tweets
-    print "writing to raw_data/{0}_tweets.csv".format(username)
+    print "writing to test_data/{0}_tweets.csv".format(username)
     with open("raw_data/{0}_tweets.csv".format(username), 'w+') as fh:
         writer = csv.writer(fh, delimiter='|')
         writer.writerows(tweets_for_csv)
