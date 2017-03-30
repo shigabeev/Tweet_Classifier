@@ -69,7 +69,7 @@ if __name__ == "__main__":
     X = np.transpose(list(dic.values()))
     y = cats
     clf.fit(X, y)
-    mode = "whole"
+    mode = "partial"    # 2 modes: partial and whole. "partial" returns number of tweets for each category.
 
     if mode == "partial":
         test_data = get_words("test_data/%s_tweets.csv" % username)
@@ -92,7 +92,7 @@ if __name__ == "__main__":
                 #     count[i] += 1
         for i, cat in enumerate(cats):
             print("Number of %s tweets: %s" % (cats[i], count[i]))
-    else:
+    else:   # "whole" mode. Returns category for whole account (first 200 tweets)
         test_data = get_words("test_data/%s_tweets.csv" % username)
         dic_test = dic
         for i in dic_test:  # clean new dic

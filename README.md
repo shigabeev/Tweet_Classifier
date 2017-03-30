@@ -1,11 +1,22 @@
 # Tweet Classifier
-<p>Qualitative analysis software that will make assumptions on topics that twitter user is often talking about.</p>
+<p>Qualitative analysis software that will make assumptions on topics that twitter user is often talking about.
+</p>
 
 ## Usage:
-<p>Right now, scripts are in raw format and designed to do only limited amount of tasks.
- To change income parameters you'll have to change the code, probably.</p>
-<ol>
-    <li>To parse data from twitter use get_tweets.py from console.
-        <br>It takes username as a command line argument and saves .csv file to /raw_data</li>
-    <li>Script for learning process is learn.py. It grabs all the content from /train_data and convert it to DB.json</li>
-</ol>
+<p>To try, open terminal and type:<p>
+<pre>$ python3 classify.py twitter_account </pre>
+<p>It will parse first 200 tweets from selected "twitter_account" and return number of tweets belonging to each category.</p>
+<p>For classification you need just 3 files: DB.json, labels.txt and Classify.py<p>
+## Learning
+<p>This script uses Naive bayes classification to determine category. You can manage input categories by changing
+contents of "classes" folder.
+<br>Use get_tweets.py to parse tweets from selected twitter accounts.
+<pre>$ python3 get_tweets.py twitter_account </pre>
+<br>Collected tweets will be saved to raw_data/twitter_account_tweets.csv.
+<br>You can use this program to gender or any else classification. But keep in mind that it works with little amount of classes
+and hardly rely on quality of input.
+</p>
+<p>After collecting the data, run
+<pre>$ python3 learn.py</pre>
+It will change the DB.json and labels.txt and classification will be performed on new data.
+</p>
