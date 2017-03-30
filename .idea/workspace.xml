@@ -5,48 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f86e1a7e-de4b-4e35-b39c-da4d3edbf1d7" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/jokes/Mudakoff_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/jokes/Stalingulag_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/life/Whysodisgusting_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/life/olleeeeeg_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/tech/GeekTimes_ru_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/classes/tech/WylsacomRed_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data/Mudakoff_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data/Stalingulag_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data/Whysodisgusting_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data/WylsacomRed_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data/habrahabr_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data/navalny_tweets.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test_data/olleeeeeg_tweets.csv" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Labeling-checkpoint.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Classy_issues.ipynb" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classes/life/SamantaDarko_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classes/life/brupsen_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classes/tech/habrahabr_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/classes/tech/technews_ru_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/A_Kapustin_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/SamantaDarko_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/bobuk_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/brupsen_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/habrahabr_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/jokes/A_Kapustin_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/jokes/bobuk_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/meduzaproject_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/rianru_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/techcrunch_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/technews_ru_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/wired_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/raw_data/wylsacom_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/train_data/SamantaDarko_tweets.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/train_data/meduzaproject_tweets.csv" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Classify.py" afterPath="$PROJECT_DIR$/Classify.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DB.json" afterPath="$PROJECT_DIR$/DB.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/labels.txt" afterPath="$PROJECT_DIR$/labels.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/MedvedevRussia_tweets.csv" afterPath="$PROJECT_DIR$/test_data/MedvedevRussia_tweets.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/brupsen_tweets.csv" afterPath="$PROJECT_DIR$/test_data/brupsen_tweets.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/meduzaproject_tweets.csv" afterPath="$PROJECT_DIR$/test_data/meduzaproject_tweets.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/rianru_tweets.csv" afterPath="$PROJECT_DIR$/test_data/rianru_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/jokes/Mudakoff_tweets.csv" afterPath="$PROJECT_DIR$/classes/jokes/Mudakoff_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/jokes/Stalingulag_tweets.csv" afterPath="$PROJECT_DIR$/classes/jokes/Stalingulag_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/life/Whysodisgusting_tweets.csv" afterPath="$PROJECT_DIR$/classes/life/Whysodisgusting_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/life/olleeeeeg_tweets.csv" afterPath="$PROJECT_DIR$/classes/life/olleeeeeg_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/tech/GeekTimes_ru_tweets.csv" afterPath="$PROJECT_DIR$/classes/tech/GeekTimes_ru_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/classes/tech/WylsacomRed_tweets.csv" afterPath="$PROJECT_DIR$/classes/tech/WylsacomRed_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/Mudakoff_tweets.csv" afterPath="$PROJECT_DIR$/test_data/Mudakoff_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/Stalingulag_tweets.csv" afterPath="$PROJECT_DIR$/test_data/Stalingulag_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/Whysodisgusting_tweets.csv" afterPath="$PROJECT_DIR$/test_data/Whysodisgusting_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/WylsacomRed_tweets.csv" afterPath="$PROJECT_DIR$/test_data/WylsacomRed_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/habrahabr_tweets.csv" afterPath="$PROJECT_DIR$/test_data/habrahabr_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/navalny_tweets.csv" afterPath="$PROJECT_DIR$/test_data/navalny_tweets.csv" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test_data/olleeeeeg_tweets.csv" afterPath="$PROJECT_DIR$/test_data/olleeeeeg_tweets.csv" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -86,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="160">
-              <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
+            <state relative-caret-position="352">
+              <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -99,8 +72,8 @@
       <file leaf-file-name="Classify.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Classify.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="73" column="24" lean-forward="false" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+            <state relative-caret-position="585">
+              <caret line="97" column="43" lean-forward="true" selection-start-line="97" selection-start-column="43" selection-end-line="97" selection-end-column="43" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#282#1430#0" expanded="false" />
@@ -120,12 +93,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="get_tweets.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="get_tweets.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/get_tweets.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
-              <folding />
+            <state relative-caret-position="352">
+              <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+              <folding>
+                <element signature="e#48#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -166,11 +141,11 @@
         <option value="$PROJECT_DIR$/Data/meduzaproject_tweets.csv" />
         <option value="$PROJECT_DIR$/NB.py" />
         <option value="$PROJECT_DIR$/freq.py" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/Classy_issues.ipynb" />
-        <option value="$PROJECT_DIR$/get_tweets.py" />
         <option value="$PROJECT_DIR$/learn.py" />
         <option value="$PROJECT_DIR$/Classify.py" />
+        <option value="$PROJECT_DIR$/get_tweets.py" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -444,6 +419,21 @@
       <option name="presentableId" value="Default" />
       <updated>1487505050916</updated>
     </task>
+    <task id="LOCAL-00001" summary="4 classes">
+      <created>1490878657948</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1490878657948</updated>
+    </task>
+    <task id="LOCAL-00002" summary="updated README.md">
+      <created>1490880929754</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1490880929754</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TodoView">
@@ -457,9 +447,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3125" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -499,6 +489,11 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="4 classes" />
+    <MESSAGE value="updated README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -591,14 +586,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="10" column="5" lean-forward="false" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/classes/news/meduzaproject_tweets.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="256">
@@ -612,18 +599,6 @@
           <caret line="60" column="23" lean-forward="false" selection-start-line="60" selection-start-column="23" selection-end-line="60" selection-end-column="23" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Classify.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="73" column="24" lean-forward="false" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#282#1430#0" expanded="false" />
-            <element signature="e#1486#1995#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -643,10 +618,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Classify.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="97" column="43" lean-forward="true" selection-start-line="97" selection-start-column="43" selection-end-line="97" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#282#1430#0" expanded="false" />
+            <element signature="e#1486#1995#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/get_tweets.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="48">
-          <caret line="3" column="10" lean-forward="false" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+        <state relative-caret-position="352">
+          <caret line="22" column="0" lean-forward="true" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
+          <folding>
+            <element signature="e#48#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="22" column="4" lean-forward="true" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
           <folding />
         </state>
       </provider>
