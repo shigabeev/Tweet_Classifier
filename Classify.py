@@ -69,23 +69,43 @@ if __name__ == "__main__":
     X = np.transpose(list(dic.values()))
     y = cats
     clf.fit(X, y)
+    mode = "whole"
 
-    test_data = get_words("test_data/%s_tweets.csv" % username)
-    dic_test = dic
-    count = [0] * len(cats)
-    for tweet in test_data:
-        for i in dic_test:
-            dic_test[i] = 0
-        for word in tweet:
-            if word in dic_test:
-                dic_test[word] += 1
-            else:
-                continue
+    if mode == "partial":
+        test_data = get_words("test_data/%s_tweets.csv" % username)
+        dic_test = dic
+        count = [0] * len(cats)
+        for tweet in test_data:
+            for i in dic_test:
+                dic_test[i] = 0
+            for word in tweet:
+                if word in dic_test:
+                    dic_test[word] += 1
+                else:
+                    continue
+            cat = clf.predict(np.array(list(dic_test.values())).reshape(1, -1))
+            for i, _ in enumerate(cats):
+                if cat == cats[i]:
+                    count[i] += 1
+                    break
+                # if (clf.predict(np.array(list(dic_test.values())).reshape(1, -1))) == cats[i]:
+                #     count[i] += 1
         for i, cat in enumerate(cats):
-            if (clf.predict(np.array(list(dic_test.values())).reshape(1, -1))) == cats[i]:
-                count[i] += 1
-    for i, cat in enumerate(cats):
-        print("Number of %s tweets: %s" % (cats[i], count[i]))
+            print("Number of %s tweets: %s" % (cats[i], count[i]))
+    else:
+        test_data = get_words("test_data/%s_tweets.csv" % username)
+        dic_test = dic
+        for i in dic_test:  # clean new dic
+            dic_test[i] = 0
+        count = [0] * len(cats)
+        for tweet in test_data:
+            for word in tweet:
+                if word in dic_test:
+                    dic_test[word] += 1
+                else:
+                    continue
+        cat = clf.predict(np.array(list(dic_test.values())).reshape(1, -1))
+        print("Dominant category is %s" % cat)
     # OK, this is raw AF
 
 
