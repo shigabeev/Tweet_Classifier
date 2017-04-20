@@ -4,18 +4,17 @@
 import sys
 import csv
 
-#http://www.tweepy.org/
+# tweepy.org
 import tweepy
-
+import config
 # Get your Twitter API credentials and enter them here
-consumer_key = "jrZm2GZjGnU4JxbmpKZje07rI"
-consumer_secret = "iFo9KzSqr7bbYz8WTUNXjGKSBKn4pQD493ZClKFGWBB35QLZqK"
-access_key = "700836102379216896-bX4bTbWPTJKtwgUXU8KyqLuBNAqqggY"
-access_secret = "alkeegvlqn7TTOtxPcM6GLAPppSPaYqhQNNLMFARi8h4q"
+consumer_key = config.consumer_key
+consumer_secret = config.consumer_secret
+access_key = config.access_key
+access_secret = config.access_secret
 
-
-# method to get a user's last 100 tweets
-def get_tweets(username):
+# method to get a user's last 200 tweets
+def get_tweets(username, number_of_tweets = 200):
     # http://tweepy.readthedocs.org/en/v3.1.0/getting_started.html#api
     auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_key, access_secret)
@@ -31,8 +30,8 @@ def get_tweets(username):
     tweets_for_csv = [[username, tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in tweets]
 
     # write to a new csv file from the array of tweets
-    print("writing to raw_data/{0}_tweets.csv".format(username))
-    with open("raw_data/{0}_tweets.csv".format(username), 'w+') as fh:
+    print("writing to unsorted/{0}_tweets.csv".format(username))
+    with open("unsorted/{0}_tweets.csv".format(username), 'w+') as fh:
         writer = csv.writer(fh, delimiter='|')
         writer.writerows(tweets_for_csv)
 

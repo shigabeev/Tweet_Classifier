@@ -3,38 +3,10 @@ import csv
 import numpy as np
 import re
 import sys
-import tweepy
 from sklearn.naive_bayes import MultinomialNB
+from get_tweets import get_tweets
 
 # this script should have been returning chance of test_data's tweet belonging to classes of learn_data
-
-
-def get_tweets(username, number_of_tweets=200):
-    consumer_key = "jrZm2GZjGnU4JxbmpKZje07rI"
-    consumer_secret = "iFo9KzSqr7bbYz8WTUNXjGKSBKn4pQD493ZClKFGWBB35QLZqK"
-    access_key = "700836102379216896-bX4bTbWPTJKtwgUXU8KyqLuBNAqqggY"
-    access_secret = "alkeegvlqn7TTOtxPcM6GLAPppSPaYqhQNNLMFARi8h4q"
-
-    # http://tweepy.readthedocs.org/en/v3.1.0/getting_started.html#api
-    auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
-    auth.set_access_token(access_key, access_secret)
-    api = tweepy.API(auth)
-
-    # set count to however many tweets you want; twitter only allows 200 at once
-    # number_of_tweets = 20
-
-    # get tweets
-    tweets = api.user_timeline(screen_name=username, count=number_of_tweets)
-
-    # create array of tweet information: username, tweet id, date/time, text
-    tweets_for_csv = [[username, tweet.id_str, tweet.created_at, tweet.text.encode("utf-8")] for tweet in tweets]
-
-    # write to a new csv file from the array of tweets
-    print("writing to test_data/{0}_tweets.csv".format(username))
-    with open("test_data/{0}_tweets.csv".format(username), 'w+') as fh:
-        writer = csv.writer(fh, delimiter='|')
-        writer.writerows(tweets_for_csv)
-
 
 def get_words(csv_file, row=3, delimiter = '|'):
     with open(csv_file) as fp:
@@ -57,7 +29,7 @@ if __name__ == "__main__":
         username = sys.argv[1]
         get_tweets(username)
     DB = "DB.json"
-    folder = "test_data"
+    folder = "unsorted"
     try:
         dic = json.load(open(DB, 'r'))
     except:
@@ -71,12 +43,12 @@ if __name__ == "__main__":
     clf.fit(X, y)
     mode = "partial"    # 2 modes: partial and whole. "partial" returns number of tweets for each category.
 
-    if mode == "partial":
-        test_data = get_words("test_data/%s_tweets.csv" % username)
+    if mode == "partial":   # sry for duct tape. I need to keep them both here.
+        test_data = get_words("unsorted/%s_tweets.csv" % username)
         dic_test = dic
         count = [0] * len(cats)
         for tweet in test_data:
-            for i in dic_test:
+            for i in dic_test:  # clear dictionary
                 dic_test[i] = 0
             for word in tweet:
                 if word in dic_test:
@@ -93,7 +65,7 @@ if __name__ == "__main__":
         for i, cat in enumerate(cats):
             print("Number of %s tweets: %s" % (cats[i], count[i]))
     else:   # "whole" mode. Returns category for whole account (first 200 tweets)
-        test_data = get_words("test_data/%s_tweets.csv" % username)
+        test_data = get_words("unsorted/%s_tweets.csv" % username)
         dic_test = dic
         for i in dic_test:  # clean new dic
             dic_test[i] = 0
@@ -106,6 +78,5 @@ if __name__ == "__main__":
                     continue
         cat = clf.predict(np.array(list(dic_test.values())).reshape(1, -1))
         print("Dominant category is %s" % cat)
-    # OK, this is raw AF
 
 
