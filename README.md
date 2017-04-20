@@ -2,12 +2,12 @@
 <p>Qualitative analysis software that will make assumptions on topics that twitter user is often talking about.
 </p>
 
-<h2> Usage:
-<p>To try, open terminal and type:<p>
+<h2>Usage:</h2>
+<p>To try, open terminal and type:</p>
 <pre>$ python3 classify.py twitter_account </pre>
 <p>It will parse first 200 tweets from selected "twitter_account" and return number of tweets belonging to each category.</p>
-<p>For classification you need just 3 files: DB.json, labels.txt and Classify.py<p>
-<h2> Learning
+<p>For classification you need just 3 files: DB.json, labels.txt and Classify.py</p>
+<h2>Learning</h2>
 <p>This script uses Naive bayes classification to determine category. You can manage input categories by changing
 contents of "classes" folder.
 <br>Use get_tweets.py to parse tweets from selected twitter accounts.
