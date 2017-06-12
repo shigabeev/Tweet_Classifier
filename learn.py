@@ -1,60 +1,95 @@
 import os
+import sys
+import numpy as np
 import re
 import csv
-import json
-import tweepy
-import config
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.externals import joblib
 
-# This script takes all files from folder train_data and save its content into dictionary DB.json in simplified form.
-# All the data is tokenized and somehow vectorized to following:
-# dic = {
-#     "hello":[1, 0],
-#     "world":[0, 1]
-# }
-# dic[hello][0] stands for number of occurrences in first document and dic[hello][1] stands for second document
-def get_words(csv_file, row=3, delimiter = '|'):
-    with open(csv_file) as fp:
-        data = csv.reader(fp, delimiter = delimiter)
-        tweets = []
-        for line in data:
-            words = line[row].lower()
-            if words[0:1] == "RT":  # ignore retweets
-                continue
-            # next line for deleting all URLs in tweet
-            words = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', words, flags=re.MULTILINE)
-            words = re.findall(r'\w+', words)
-            tweets.append(words)
-        return tweets   # returns tokenized array of words. ex: ["hello", "world"]
+def purify(str):
+    # delete all URLs
+    str = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', str, flags=re.MULTILINE)
+    #delete all usernames
+    str = re.sub(r'@\w+', '', str)
+    return str.lower()
+
+def generate_data(corpus):
+    train_target = [corpus[i][1] for i in range(len(corpus))]
+    train_data = [corpus[i][0] for i in range(len(corpus))]
+    return train_data, train_target
+
 
 if __name__ == "__main__":
-    # Learning
-    folder = "classes"
-    dic = {}
-    cats = os.listdir(folder)   # categories or classes. Class is restricted word
-    for i, category in enumerate(cats):
-        if category[0] == '.':
-            cats.remove(category)
-            continue
-        for fn in os.listdir("%s/%s" % (folder, category)):  # Learning process
-            fp = "%s/%s/%s" % (folder, category, fn)
-            if fn[0] == '.':    # Skip hidden files
-                continue
-            if os.path.splitext(fn)[1] != '.csv':   # Skip unsupported files
-                continue
-            else:
-                for tweets in get_words(fp):
-                    for word in tweets:
-                        if word in dic:
-                            dic[word][i] += 1
-                        else:
-                            dic[word] = [0]*len(cats)
-                            dic[word][i] = 1
-    with open("DB.json", 'w') as f:
-        json.dump(dic, f, ensure_ascii=False)
-    with open("labels.txt", 'w') as f:
-        for cat in cats:
-            f.write("%s\n" % cat)
+    train_corpus = []
+    for cat in os.listdir("classes"):
+        if cat[0] != '.':
+            for account in os.listdir("classes/%s" % cat):
+                with open("classes/%s/%s" % (cat, account)) as fp:
+                    raw_data = csv.reader(fp, delimiter = '|')
+                    for line in raw_data:
+                        if line[0:1] != "RT":    # ignore retweets
+                            train_corpus.append([str(purify(line[3])), cat])
 
+    train_data, train_target = generate_data(train_corpus)
 
+    count_vect = CountVectorizer()
+    X_train_counts = count_vect.fit_transform(train_data)
 
+    tf_transformer = TfidfTransformer()
+    X_train_tf = tf_transformer.fit_transform(X_train_counts)
 
+    # here you can specify type of classifier
+    if len(sys.argv) == 2:
+        if sys.argv[1] == "bayes":
+            from sklearn.naive_bayes import MultinomialNB
+            text_clf = Pipeline([('vect', CountVectorizer()),
+                                 ('tfidf', TfidfTransformer()),
+                                 ('clf', MultinomialNB()), ])
+        elif sys.argv[1] == "svm":
+            from sklearn.linear_model import SGDClassifier
+            text_clf = Pipeline([('vect', CountVectorizer()),
+                                 ('tfidf', TfidfTransformer()),
+                                 ('clf', SGDClassifier(loss='hinge', penalty='l2',
+                                                       alpha=1e-3, n_iter=5, random_state=42)),
+                                 ])
+    else:
+        from sklearn.linear_model import SGDClassifier
+        text_clf = Pipeline([('vect', CountVectorizer()),
+                            ('tfidf', TfidfTransformer()),
+                            ('clf', SGDClassifier(loss='perceptron', penalty='l2',
+                                                     alpha=1e-3, n_iter=5, random_state=42)),
+                            ])
+
+    text_clf.fit(train_data, train_target)
+
+    predicted = text_clf.predict(train_data)
+    print("Точность модели тематической классификации: ", np.mean(predicted == train_target))   # show quality of model
+
+    joblib.dump(text_clf, 'models/text_model.pkl')     # save working model
+
+    #######
+    # Gender recognition
+
+    gender_corpus = []
+    for cat in os.listdir("gender"):
+        if cat[0] != '.':
+            for account in os.listdir("gender/%s" % cat):
+                with open("gender/%s/%s" % (cat, account)) as fp:
+                    raw_data = csv.reader(fp, delimiter='|')
+                    for line in raw_data:
+                        if line[0:1] != "RT":  # ignore retweets
+                            gender_corpus.append([purify(line[3]), cat])
+    gender_data, gender_target = generate_data(gender_corpus)
+    # no need for setting classifier as perceptron works perfectly well here
+    gender_clf = Pipeline([('vect', CountVectorizer()),
+                           ('tfidf', TfidfTransformer()),
+                           ('clf', SGDClassifier(loss='perceptron', penalty='l2',
+                                                 alpha=1e-3, n_iter=5, random_state=42)),
+                           ])
+    gender_clf.fit(gender_data, gender_target)
+    predicted = gender_clf.predict(gender_data)
+    print("Точность модели гендерной классификации: ", np.mean(predicted == gender_target))
+
+    joblib.dump(gender_clf, 'models/gender_model.pkl')  # save working model

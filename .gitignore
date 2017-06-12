@@ -1,0 +1,5 @@
+config.py
+*.pyc
+.idea
+__pycache__
+.ipynb*

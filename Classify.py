@@ -1,82 +1,61 @@
-import json
+import tweepy
+import config
 import csv
-import numpy as np
-import re
 import sys
-from sklearn.naive_bayes import MultinomialNB
+import numpy as np
+import matplotlib.pyplot as plt
 from get_tweets import get_tweets
+from collections import Counter
+from learn import purify
+from sklearn.externals import joblib
 
-# this script should have been returning chance of test_data's tweet belonging to classes of learn_data
-
-def get_words(csv_file, row=3, delimiter = '|'):
-    with open(csv_file) as fp:
-        data = csv.reader(fp, delimiter = delimiter)
-        tweets = []
-        for line in data:
-            words = line[row].lower()
-            if words[0:1] == "RT":  # ignore retweets
-                continue
-            # next line for deleting all URLs in tweet
-            words = re.sub(r'\w+:\/{2}[\d\w-]+(\.[\d\w-]+)*(?:(?:\/[^\s/]*))*', '', words, flags=re.MULTILINE)
-            words = re.findall(r'\w+', words)
-            tweets.append(words)
-        return tweets
+auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
+auth.set_access_token(config.access_key, config.access_secret)
+api = tweepy.API(auth)
 
 if __name__ == "__main__":
-    # default
-    username = "meduzaproject"
+    username = "medvedevrussia"     # default username
     if len(sys.argv) == 2:
         username = sys.argv[1]
-        get_tweets(username)
-    DB = "DB.json"
-    folder = "unsorted"
     try:
-        dic = json.load(open(DB, 'r'))
-    except:
-        print("error reading file. Terminating")
-        dic = {}
-        quit()
-    cats = [line.rstrip('\n') for line in open('labels.txt')]   # list of categories
-    clf = MultinomialNB()
-    X = np.transpose(list(dic.values()))
-    y = cats
-    clf.fit(X, y)
-    mode = "partial"    # 2 modes: partial and whole. "partial" returns number of tweets for each category.
+        text_clf = joblib.load("models/text_model.pkl")
+        gender_clf = joblib.load("models/gender_model.pkl")
+    except FileNotFoundError:
+        sys.exit("Не найден файл модели")
+    get_tweets(username, folder="unsorted")
+    tweets = []
+    with open("unsorted/{0}_tweets.csv".format(username)) as fp:
+        raw_data = csv.reader(fp, delimiter='|')
+        for line in raw_data:
+            if line[0:1] != "RT":  # ignore retweets
+                tweets.append(purify(line[3]))
 
-    if mode == "partial":   # sry for duct tape. I need to keep them both here.
-        test_data = get_words("unsorted/%s_tweets.csv" % username)
-        dic_test = dic
-        count = [0] * len(cats)
-        for tweet in test_data:
-            for i in dic_test:  # clear dictionary
-                dic_test[i] = 0
-            for word in tweet:
-                if word in dic_test:
-                    dic_test[word] += 1
-                else:
-                    continue
-            cat = clf.predict(np.array(list(dic_test.values())).reshape(1, -1))
-            for i, _ in enumerate(cats):
-                if cat == cats[i]:
-                    count[i] += 1
-                    break
-                # if (clf.predict(np.array(list(dic_test.values())).reshape(1, -1))) == cats[i]:
-                #     count[i] += 1
-        for i, cat in enumerate(cats):
-            print("Number of %s tweets: %s" % (cats[i], count[i]))
-    else:   # "whole" mode. Returns category for whole account (first 200 tweets)
-        test_data = get_words("unsorted/%s_tweets.csv" % username)
-        dic_test = dic
-        for i in dic_test:  # clean new dic
-            dic_test[i] = 0
-        count = [0] * len(cats)
-        for tweet in test_data:
-            for word in tweet:
-                if word in dic_test:
-                    dic_test[word] += 1
-                else:
-                    continue
-        cat = clf.predict(np.array(list(dic_test.values())).reshape(1, -1))
-        print("Dominant category is %s" % cat)
+    predicted = text_clf.predict(tweets)
+    result = []
+    for doc, category in zip(tweets, predicted):
+        result.append(category)
+    z = Counter(result)
+    user = api.get_user(username)
+    labels = list(z)
+    values = list(z.values())
+    explode = [np.log(x) / 50 for x in values]
+
+    plt.pie(values, labels=labels, explode=explode,
+            autopct='%1.1f%%', shadow=True, startangle=140)
+    plt.axis('equal')
+
+    print("\n")
+    print(user.name, ", ", user.followers_count, "подписчиков.")
+    print("Интересы: ")
+
+    for value, label in zip(values, labels):
+        print(label, " : %1.1f%%" % (value / len(tweets) * 100))
+
+    gender_predict = gender_clf.predict(tweets)
+    gender_result = []
+    for doc, category in zip(tweets, gender_predict):
+        gender_result.append(category)
+    print("Пол: ", Counter(gender_result).most_common()[0][0])
+    plt.show()
 
 
